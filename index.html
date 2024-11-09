@@ -3,70 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Understanding SQL Constraints</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-dark.min.css" rel="stylesheet" />
+    <title>SQL Code Display</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         body {
             background-color: #343a40; /* Dark background */
-            color: #ffffff; /* Light text color */
+            color: white; /* Light text color */
         }
-        pre {
+        .code-snippet {
             background-color: #212529; /* Darker background for code */
-            border-radius: 5px;
             padding: 15px;
-            overflow-x: auto;
-        }
-        .container {
-            margin-top: 50px;
+            border-radius: 5px;
+            overflow-x: auto; /* Allow horizontal scrolling */
         }
     </style>
 </head>
 <body>
+    <div class="container mt-5">
+        <h1 class="text-center">SQL Code Example</h1>
+        <div class="code-snippet">
+            <pre><code>SELECT *
+FROM RADNIK
+WHERE MATBRS IS NULL</code></pre>
+        </div>
+        <h2 class="mt-4">Code Explanation</h2>
+        <p>The SQL statement retrieves all records from the <code>RADNIK</code> table where the column <code>MATBRS</code> is NULL.</p>
+        <h3>The Issue with NULL</h3>
+        <p>In SQL, you cannot use standard comparison operators to check for NULL. Instead, use <code>IS NULL</code>.</p>
+        <h3>Corrected Code</h3>
+        <p>To properly filter for rows where <code>MATBRS</code> is NULL, the correct syntax is:</p>
+        <div class="code-snippet">
+            <pre><code>SELECT *
+FROM RADNIK
+WHERE MATBRS IS NULL</code></pre>
+        </div>
+    </div>
 
-<div class="container">
-    <h1 class="mb-4">Understanding CONSTRAINT in SQL</h1>
-
-    <h2>Definition</h2>
-    <p>A <strong>constraint</strong> in SQL is a rule that restricts the type of data that can be stored in a table. It ensures that the data adheres to certain standards and maintains the integrity of the database. In Oracle SQL, constraints can be applied at both the column level and the table level.</p>
-
-    <h2>Types of Constraints</h2>
-    <ul>
-        <li><strong>NOT NULL:</strong> Ensures that a column cannot contain NULL values.</li>
-        <li><strong>UNIQUE:</strong> Guarantees that all values in a column are distinct.</li>
-        <li><strong>PRIMARY KEY:</strong> A combination of NOT NULL and UNIQUE; it uniquely identifies each row in a table and prevents duplicate entries.</li>
-        <li><strong>FOREIGN KEY:</strong> Establishes a relationship between two tables, ensuring referential integrity.</li>
-        <li><strong>CHECK:</strong> Validates that values in a column meet a specific condition.</li>
-    </ul>
-
-    <h2>Application in the Code</h2>
-    <pre><code class="language-sql">CREATE TABLE RADI_NA
-(
- MBR INTEGER NOT NULL,
- BRPR INTEGER NOT NULL,
- SATI NUMBER(2,0),
- CONSTRAINT RADI_NA_PK PRIMARY KEY (MBR, BRPR)
-);</code></pre>
-
-    <p>In your code snippet:</p>
-    <ul>
-        <li>The <code>CONSTRAINT RADI_NA_PK PRIMARY KEY (MBR, BRPR)</code> line defines a <strong>primary key constraint</strong> named <code>RADI_NA_PK</code>. This means:</li>
-        <ul>
-            <li>The combination of <code>MBR</code> and <code>BRPR</code> must be unique for each row in the <code>RADI_NA</code> table.</li>
-            <li>Neither <code>MBR</code> nor <code>BRPR</code> can contain NULL values, enforcing that every record must have valid identifiers.</li>
-        </ul>
-    </ul>
-
-    <h2>Importance of Constraints</h2>
-    <p>Constraints are crucial for maintaining data accuracy and integrity. They prevent invalid data entries and ensure that relationships between different pieces of data are consistent. For instance, without the primary key constraint, duplicate or NULL values could lead to ambiguity when retrieving records from the database.</p>
-
-    <p>In summary, constraints like those defined in your SQL code are essential tools for ensuring that your database remains reliable and that the data it contains is valid and consistent.</p>
-</div>
-
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-sql.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
